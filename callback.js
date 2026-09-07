@@ -1,7 +1,7 @@
-// Promise.resolve().then(() => {
-//     console.log('Promise resolved');
-// }
-// )
+Promise.resolve().then(() => {
+    console.log('Promise resolved');
+}
+)
 function getUser(id, callback) {
     setTimeout(() => {
         console.log(`Fetching user with ID: ${id}`);
