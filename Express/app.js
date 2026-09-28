@@ -21,13 +21,23 @@ import fs from 'fs'
 const app=express();
 const bookData=JSON.parse(fs.readFileSync("./data/books.json","utf-8"))
 app.get("/api/v1/books",(req,res)=>{
-    res.json({
+    try {
+         res.status(200).json({
         staus:"success",
+        count:bookData.length,
         data:{
             book:bookData
+            
         }
+        
     })
-})
+    } catch (error) {
+        res.status(404).json({
+            status:"fail",
+            message:"data not found"
+        })
+    }
+});
 app.listen(3000,()=>{
     console.log("server is running....");
 })
