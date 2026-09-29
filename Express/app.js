@@ -20,7 +20,11 @@ import express from 'express'
 import fs from 'fs'
 const app=express();
 app.use(express.json())
-app.use()
+app.use("middleware",(req,res,next)=>{
+    console.log("middleware is running");
+    next()
+}
+)
 const bookData=JSON.parse(fs.readFileSync("./data/books.json","utf-8"))
 app.get("/api/v1/books",(req,res)=>{
     try {
