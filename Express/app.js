@@ -104,8 +104,19 @@ app.patch("/api/v1/books/:id",(req,res)=>{
     })
 })
 
-    app.delete("/api/v1/books/:id",(req,res)=>{
-        co
+app.delete("/api/v1/books/:id",(req,res)=>{
+        const id=req.params.id;
+        const booktodelete=bookData.find(book=>book.id===id)
+        let index=bookData.indexOf(booktodelete)
+        bookData.splice(index,1)
+        fs.writeFileSync("./data/books.json",JSON.stringify(bookData))
+        res.status(200).json({
+            status:"success",
+            data:{
+                message:"book deleted successfully"
+            }
+        })
+
        
 
    
